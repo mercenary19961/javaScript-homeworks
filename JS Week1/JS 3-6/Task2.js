@@ -46,7 +46,7 @@ if (age >= 18 && license == "yes") {
 // 5- Write a program to declare a number.
 //If the number is greater than 10 or less than 0, print "Invalid number". Otherwise, print "Valid number".
 var numb = parseInt(prompt("Enter a number:"));
-if (numb > 10 || numb < 0) {
+if (numb >= 10 || numb <= 0) {
   console.log("Invalid number");
 } else {
   console.log("Valid number");
@@ -82,7 +82,7 @@ if (userNum >= 0 && userNum <= 100 && userNum % 2 == 0) {
 //Otherwise, print "Both numbers are positive".
 var numOne = parseInt(prompt("Enter num 1 :"));
 var numTwo = parseInt(prompt("Enter num 2 :"));
-if (numOne <= 0 || numTwo <= 0) {
+if (numOne < 0 || numTwo < 0) {
   console.log("At least one number is negative");
 } else {
   console.log("Both numbers are positive");
@@ -91,7 +91,7 @@ if (numOne <= 0 || numTwo <= 0) {
 //If the user is under 18 or is a student, print "You qualify for a discount". Otherwise, print "You do not qualify for a discount".
 let yourAge = parseInt(prompt("Enter your age :"));
 let student = prompt("Are you a student? : (yes, no)");
-if (yourAge < 18 || student == "yes") {
+if (yourAge < 18 || student === "yes") {
   console.log("You qualify for a discount");
 } else {
   console.log("You do not qualify for a discount");
