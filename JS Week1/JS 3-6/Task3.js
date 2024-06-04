@@ -41,11 +41,13 @@ for (let i = userNum; i >= 1; i--) {
 console.log(sum);
 // 7- Write a program that prints the Fibonacci series up to a certain number entered by the user using a while loop.
 var fibonacciNum = parseInt(prompt("Enter a number :"));
-let a = 0;
-let b = 1;
+let a = 0,
+  b = 1,
+  sum = 0;
 console.log(a);
 console.log(b);
 while (a <= fibonacciNum) {
+  sum = a + b;
   [a, b] = [b, a + b];
   console.log(sum);
 }
