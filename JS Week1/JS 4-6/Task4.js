@@ -609,7 +609,7 @@ function counter() {
   return (container += 1);
 }
 function resetCounter() {
-  console.log(container);
+  console.log(container, "and the counter reset now");
   return (container = 0);
 }
 console.log(counter());
