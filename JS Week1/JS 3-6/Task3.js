@@ -43,14 +43,17 @@ console.log(sum);
 var fibonacciNum = parseInt(prompt("Enter a number :"));
 let a = 0;
 let b = 1;
+console.log(a);
+console.log(b);
 while (a <= fibonacciNum) {
-  console.log(a);
   [a, b] = [b, a + b];
+  console.log(sum);
 }
 
 // 8- Write a program that prints the reverse of the following numbers:
 //5 , 10 , 15 , 20
 // using a while loop.
+
 // const array1 = [5, 10, 15, 20];
 // let k = -1;
 // while (k >= -4) {
@@ -59,9 +62,8 @@ while (a <= fibonacciNum) {
 // }
 
 const array1 = [5, 10, 15, 20];
-let k = array1.length - 1; // Start from the last index
-
-while (k > 0) {
+let k = array1.length - 1;
+while (k >= 0) {
   console.log(array1[k]);
   k--;
 }
