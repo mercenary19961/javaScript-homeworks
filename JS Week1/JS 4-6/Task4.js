@@ -213,7 +213,7 @@ Ex: sameLength("tree","car")
 var input1 = prompt("Enter the first word:");
 var input2 = prompt("Enter the second word:");
 function sameLength(string1, string2) {
-  if (string1.length == string2.length) {
+  if (string1.length === string2.length) {
     return console.log("true");
   } else {
     return console.log("false");
@@ -237,6 +237,8 @@ let input2 = Number(prompt("Enter number 2 : "));
 function largerNubmer(num1, num2) {
   if (num1 >= num2) {
     return console.log(num1);
+  } else {
+    return console.log(num2);
   }
 }
 largerNubmer(input1, input2);
