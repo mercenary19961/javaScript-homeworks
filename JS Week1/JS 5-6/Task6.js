@@ -28,6 +28,8 @@ Create an array represents your:
 3- Favorite Movie (4)
 */
 
+let array03 = ["fettucini", "chicken breasts", ]
+
 /*
 4
 Create a function called firstOfArray
