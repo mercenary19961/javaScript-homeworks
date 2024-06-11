@@ -28,7 +28,7 @@
         <div class="right">
             <div class="head">
                 <div class="lo">
-                    <img src="/JS 10-6/images/white.png" alt="orange logo">
+                    <img src="/JS 10-6/images/white.png" alt="">
                 </div>
                 <div class="hr">
                     <a style="margin-right: 11%;" href="">Help</a>
@@ -46,22 +46,26 @@
                         </div>
                         <div>
                             <label for="email" class="form-label is-required">Email address</label>
-                            <input type="email" class="form-control" id="email" required><span id="email_check"></span>
+                            <input type="email" class="form-control" id="email" required>
+                            <span id="email_error" class="text-danger"></span>
                             <p style="font-size: smaller;">eg: username@domain.com</p>
                         </div>
                         <div>
                             <label for="phone" class="form-label is-required">Mobile</label>
                             <input type="tel" class="form-control" id="phone" name="phone" pattern="[0-9]{10}" required>
+                            <span id="phone_error" class="text-danger"></span>
                             <p style="font-size: smaller;">eg: 077********</p>
                         </div>
                         <div>
                             <label for="inputPassword4" class="form-label is-required">Create Password</label>
                             <input type="password" class="form-control" id="inputPassword4" required>
+                            <span id="password_error" class="text-danger"></span>
                             <p style="font-size: small;">Must contain at least one uppercase character, one number, special character, and minimum 6 characters.</p>
                         </div>
                         <div>
                             <label for="confirmPassword" class="form-label is-required">Confirm Password</label>
                             <input type="password" class="form-control" id="confirmPassword" required>
+                            <span id="confirm_password_error" class="text-danger"></span>
                         </div>
                         <div>
                             <div class="col-12">

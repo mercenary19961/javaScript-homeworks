@@ -19,14 +19,18 @@
                 const storedUser = JSON.parse(localStorage.getItem(email.value));
                 
                 if (storedUser && storedUser.password === password.value) {
-                    sessionStorage.setItem('currentUser', JSON.stringify({ id: storedUser.id, fullname: storedUser.fullname }));
+                    sessionStorage.setItem('currentUser', JSON.stringify({ 
+                        id: storedUser.id, 
+                        fullname: storedUser.fullname,
+                        email: storedUser.email,
+                        phone: storedUser.phone 
+                    }));
                     window.location.href = 'welcome.html';
                 } else {
                     alert('Invalid email or password.');
                 }
             });
         });
-
     </script>
 </head>
 
