@@ -1,0 +1,126 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f5f5f5;
+}
+
+.product-container, .cart-container {
+    width: 80%;
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.product-card, .cart-item {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 28%;
+    height: 50vh;
+}
+
+.product-card img {
+    width: 100%;
+    height: 55%;
+}
+
+.product-card p {
+    margin: 10px 0;
+}
+
+.add-to-cart, .cart-item button, #save {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+#cart-container {
+    min-width: 80%;
+    margin-bottom: 20px;
+    padding-left: 30%;
+    height: 10% !important;
+}
+
+#cart-items {
+    list-style-type: none;
+    padding: 0;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 40%;
+    width: 60%;
+    height: 20%;
+    margin: 10px 0;
+    padding: 10px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cart-item img {
+    width: 50px;
+    height: 50px;
+    padding-left: 2%;
+    border-radius: 8px;
+}
+
+.cart-item p {
+    margin: 0 10px;
+    flex-grow: 0.5;
+    text-align: left;
+    padding-left: 1%;
+}
+
+.cart-item-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cart-item-controls button {
+    background-color: #333;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    margin: 0 5px;
+
+}
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-left: 40%;
+}
+.cart-total p {
+    font-size: 2rem;
+}
+
+.remove, .decrease ,.increase {
+    padding: 0px !important;
+    font-size: larger;
+}
+.increase {
+    color: #9BEC00 !important;
+}
+.decrease {
+    color: #FF6969 !important;
+}
+.remove {
+    border-radius: 50% !important;
+    background-color: red !important;
+}

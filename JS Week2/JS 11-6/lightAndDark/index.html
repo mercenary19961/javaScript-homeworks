@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark and Light Mode Toggle</title>
+    <style>
+        body {
+            transition: background-color 0.5s, color 0.5s;
+        }
+
+        body.blue {
+            background-color: rgb(0, 0, 208);
+            color: white;
+        }
+
+        body.light {
+            background-color: white;
+            color: black;
+        }
+
+        body.dark {
+            background-color: black;
+            color: white;
+        }
+
+        .container {
+            text-align: center;
+            margin-top: 20%;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Mode Toggle Page</h1>
+        <button id="toggleMode">Toggle Mode</button>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const body = document.body;
+            const toggleButton = document.getElementById("toggleMode");
+
+            if (!sessionStorage.getItem("mode")) {
+                body.classList.add("blue");
+                sessionStorage.setItem("mode", "blue");
+            } else {
+                body.classList.add(sessionStorage.getItem("mode"));
+            }
+
+            toggleButton.addEventListener("click", () => {
+                let currentMode = sessionStorage.getItem("mode");
+
+                if (currentMode === "blue") {
+                    body.classList.replace("blue", "light");
+                    sessionStorage.setItem("mode", "light");
+                } else if (currentMode === "light") {
+                    body.classList.replace("light", "dark");
+                    sessionStorage.setItem("mode", "dark");
+                } else if (currentMode === "dark") {
+                    body.classList.replace("dark", "blue");
+                    sessionStorage.setItem("mode", "blue");
+                }
+            });
+        });
+    </script>
+</body>
+</html>

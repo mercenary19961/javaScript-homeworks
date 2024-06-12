@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <link href="https://cdn.jsdelivr.net/npm/boosted@5.3.3/dist/css/boosted.min.css" rel="stylesheet"
+        integrity="sha384-laZ3JUZ5Ln2YqhfBvadDpNyBo7w5qmWaRnnXuRwNhJeTEFuSdGbzl4ZGHAEnTozR" crossorigin="anonymous">
+    <link rel="stylesheet" href="oran.css">
+    <script src="https://cdn.jsdelivr.net/npm/boosted@5.3.3/dist/js/boosted.bundle.min.js" integrity="sha384-3RoJImQ+Yz4jAyP6xW29kJhqJOE3rdjuu9wkNycjCuDnGAtC/crm79mLcwj1w2o/" crossorigin="anonymous"></script>
+    <script defer src="index.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="con">
+        <div id="left" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="/JS 10-6/images/1.jpg" alt="" style="height: 100vh;">
+                </div>
+                <div class="carousel-item">
+                    <img src="/JS 10-6/images/2.jpg" alt="" style="height: 100vh;">
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <div class="head">
+                <div class="lo">
+                    <img src="/JS 10-6/images/white.png" alt="">
+                </div>
+                <div class="hr">
+                    <a style="margin-right: 11%;" href="">Help</a>
+                    <a href="">Terms & Conditions</a>
+                </div>
+            </div>
+            <hr>
+            <div class="bot">
+                <h1>Create an account</h1>
+                <form class="row g-3" id="signup-form">
+                    <div style="width: 30rem;" class="col-md-6">
+                        <div>
+                            <label for="fullname" class="form-label is-required">Full Name</label>
+                            <input type="text" class="form-control" id="fullname" required>
+                        </div>
+                        <div>
+                            <label for="email" class="form-label is-required">Email address</label>
+                            <input type="email" class="form-control" id="email" required>
+                            <span id="email_error" class="text-danger"></span>
+                            <p style="font-size: smaller;">eg: username@domain.com</p>
+                        </div>
+                        <div>
+                            <label for="phone" class="form-label is-required">Mobile</label>
+                            <input type="tel" class="form-control" id="phone" name="phone" pattern="[0-9]{10}" required>
+                            <span id="phone_error" class="text-danger"></span>
+                            <p style="font-size: smaller;">eg: 077********</p>
+                        </div>
+                        <div>
+                            <label for="inputPassword4" class="form-label is-required">Create Password</label>
+                            <input type="password" class="form-control" id="inputPassword4" required>
+                            <span id="password_error" class="text-danger"></span>
+                            <p style="font-size: small;">Must contain at least one uppercase character, one number, special character, and minimum 6 characters.</p>
+                        </div>
+                        <div>
+                            <label for="confirmPassword" class="form-label is-required">Confirm Password</label>
+                            <input type="password" class="form-control" id="confirmPassword" required>
+                            <span id="confirm_password_error" class="text-danger"></span>
+                        </div>
+                        <div>
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="termsCheck" required>
+                                    <label class="form-check-label is-required" for="termsCheck">
+                                        I agree to the terms & conditions Orange
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="newsletterCheck">
+                                <label class="form-check-label" for="newsletterCheck">
+                                    Receive Coding Academy Newsletter.
+                                </label>
+                            </div>
+                            <button style="height: 3rem;" type="submit" class="btn btn-primary mt-2 w-100 fw-bold" id="signupButton" disabled>
+                                Signup
+                            </button>
+                            <a style="height: 3rem;" href="login.html" class="border btn btn-white mt-2 w-100">
+                                Already have an account? Login
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
