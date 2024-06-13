@@ -10,26 +10,31 @@
     <link rel="stylesheet" href="login.css">
     <script defer>
         document.addEventListener('DOMContentLoaded', function() {
-            const form = document.getElementById('login-form');
-            const email = document.getElementById('loginEmail');
-            const password = document.getElementById('loginPassword');
+            if (!sessionStorage.getItem('currentUser', JSON.stringify)) {
+                const form = document.getElementById('login-form');
+                const email = document.getElementById('loginEmail');
+                const password = document.getElementById('loginPassword');
+                const popUpDiv = document.createElement('div');
+                popUpDiv.classList.add('popUp');
 
-            form.addEventListener('submit', function(event) {
-                event.preventDefault();
-                const storedUser = JSON.parse(localStorage.getItem(email.value));
-                
-                if (storedUser && storedUser.password === password.value) {
-                    sessionStorage.setItem('currentUser', JSON.stringify({ 
-                        id: storedUser.id, 
-                        fullname: storedUser.fullname,
-                        email: storedUser.email,
-                        phone: storedUser.phone 
-                    }));
-                    window.location.href = 'welcome.html';
-                } else {
-                    alert('Invalid email or password.');
-                }
+
+                form.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    const storedUser = JSON.parse(localStorage.getItem(email.value));
+                    
+                    if ((storedUser && storedUser.password === password.value) && (storedUser && storedUser.email === email.value)) {
+                        sessionStorage.setItem('currentUser', JSON.stringify({ 
+                            id: storedUser.id, 
+                            fullname: storedUser.fullname,
+                            email: storedUser.email,
+                            phone: storedUser.phone 
+                        }));
+                        window.location.href = 'welcome.html';
+                    } else {
+                        alert('Invalid email or password.');
+                    }
             });
+            }            
         });
     </script>
 </head>

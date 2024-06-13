@@ -1,18 +1,15 @@
-/* welcome.css */
-
-/* Centering the welcome message */
 body, html {
     height: 100%;
     width: 100%;
     margin: 0;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: #f8f9fa;
     font-family: Arial, sans-serif;
 }
 
-/* Fade-in animation */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -23,7 +20,10 @@ body, html {
 }
 
 .con {
+    display: flex;
+    flex-direction: column;
     text-align: center;
+    height: 70vh;
     animation: fadeIn 2s ease-in-out;
 }
 
@@ -31,10 +31,46 @@ h1 {
     font-size: 3rem;
     color: rgb(255, 128, 0);
     margin: 0;
+    padding-top: 30%;
 }
 
 #welcomeMessage {
     font-size: 2rem;
     color: #333;
     margin-top: 1rem;
+}
+
+.log-con {
+    display: flex;
+    height: 20vh;
+    width: 40%;
+    text-align: center;
+    animation: fadeIn 2s ease-in-out;
+    justify-self: end;
+    align-self: baseline;
+}
+.log-con div {
+    margin-left: 2%;
+}
+
+.log-con button {
+    width: 100px;
+    height: 40px;
+    background-color: rgb(255, 128, 0);
+    color: white;
+    border-radius: 8px;
+    text-align: center;
+    margin: 0 4%;
+    border: none;
+}
+#signup {
+    display: block;
+}
+
+#login {
+    display: block;
+}
+
+#logout {
+    display: none;
 }

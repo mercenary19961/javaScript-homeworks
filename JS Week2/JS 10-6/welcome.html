@@ -11,19 +11,46 @@
     <script defer>
         document.addEventListener('DOMContentLoaded', function() {
             const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+            const signup = document.getElementById('signup');
+            const login = document.getElementById('login');
+            const logout = document.getElementById('logout');
+
+            signup.addEventListener('click', () => {
+                window.location.href = 'Signup.html';
+            })
+
+            login.addEventListener('click', () => {
+                window.location.href = 'login.html';
+            })
+
+            logout.addEventListener('click', () => {
+                sessionStorage.clear();
+                document.getElementById('welcomeMessage').textContent = "";
+                signup.style.display = "block";
+                login.style.display = "block";
+                logout.style.display = "none";
+            })
+
             if (currentUser) {
                 document.getElementById('welcomeMessage').textContent = `Hello, ${currentUser.fullname}`;
-            } else {
-                window.location.href = 'login.html';
-            }
+                signup.style.display = "none";
+                login.style.display = "none";
+                logout.style.display = "block";
+            } 
+
         });
     </script>
 </head>
 
 <body>
+    <div class="log-con">
+        <div id="signup"><button>Sign up</button></div>
+        <div id="login"><button>Log in</button></div>
+        <div id="logout"><button>Log out</button></div>
+    </div>
     <div class="con">
         <h1>Welcome</h1>
-        <div id="welcomeMessage">Hello</div>
+        <div id="welcomeMessage"></div>
     </div>
 </body>
 

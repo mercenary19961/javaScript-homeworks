@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     const cartContainer = document.getElementById('cart-items');
     const totalAmount = document.getElementById('total-amount');
-    let cart = {};
+    let cart = JSON.parse(localStorage.getItem('cart')) || {};
 
-    const updateTotal = () => {
+    const updateTotal = () => { // This function updates the total value after adding all the items in cart.
         let total = 0;
         for (let key in cart) {
             total += cart[key].price * cart[key].quantity;
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         totalAmount.textContent = total;
     };
 
-    const renderCart = () => {
+    const renderCart = () => { // this function renders the new list items added after the user clicks "add item".
         cartContainer.innerHTML = '';
         for (let key in cart) {
             const item = cart[key];
@@ -62,6 +62,14 @@ document.addEventListener('DOMContentLoaded', () => {
         updateTotal();
     };
 
+    const saveToLocalStorage = () => {
+        localStorage.setItem('cart', JSON.stringify(cart));
+    };
+
+    const saveToSessionStorage = () => {
+        sessionStorage.setItem('cart', JSON.stringify(cart));
+    };
+
     document.querySelectorAll('.add-to-cart').forEach(button => {
         button.addEventListener('click', event => {
             const productCard = event.target.closest('.product-card');
@@ -74,6 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 cart[name].quantity += 1;
             }
+            saveToLocalStorage();
             renderCart();
         });
     });
@@ -89,11 +98,15 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (event.target.classList.contains('remove')) {
             delete cart[name];
         }
+        saveToLocalStorage();
         renderCart();
     });
 
     document.getElementById('save').addEventListener('click', () => {
-        alert('Cart saved!');
+        saveToSessionStorage();
+        alert('Cart saved to session storage!');
         console.log('Cart saved:', cart);
     });
+
+    renderCart();
 });
