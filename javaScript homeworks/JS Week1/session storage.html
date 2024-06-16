@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Session Storage Example</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      form {
+        margin-top: 20px;
+      }
+
+      label {
+        display: block;
+        margin-top: 10px;
+      }
+
+      input[type="text"] {
+        padding: 5px;
+        width: 300px;
+      }
+
+      button {
+        margin-top: 20px;
+        padding: 10px 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Multi-step Form</h1>
+    <form id="multiStepForm">
+      <label for="step1">Step 1:</label>
+      <input
+        type="text"
+        id="step1"
+        name="step1"
+        placeholder="Enter step 1 data"
+      />
+      <br />
+      <label for="step2">Step 2:</label>
+      <input
+        type="text"
+        id="step2"
+        name="step2"
+        placeholder="Enter step 2 data"
+      />
+      <br />
+      <button type="button" id="saveData">Save Data</button>
+    </form>
+
+    <script>
+      const step1Input = document.getElementById("step1");
+      const step2Input = document.getElementById("step2");
+      const saveDataButton = document.getElementById("saveData");
+
+      // Function to save form data to session storage
+      function saveFormData() {
+        sessionStorage.setItem("step1", step1Input.value);
+        sessionStorage.setItem("step2", step2Input.value);
+        alert("Data saved to session storage");
+      }
+
+      // Load saved form data from session storage
+      function loadFormData() {
+        const savedStep1 = sessionStorage.getItem("step1");
+        const savedStep2 = sessionStorage.getItem("step2");
+
+        if (savedStep1) {
+          step1Input.value = savedStep1;
+        }
+
+        if (savedStep2) {
+          step2Input.value = savedStep2;
+        }
+      }
+
+      // Save data when the button is clicked
+      saveDataButton.addEventListener("click", saveFormData);
+
+      // Load any saved data when the page loads
+      window.addEventListener("load", loadFormData);
+    </script>
+  </body>
+</html>

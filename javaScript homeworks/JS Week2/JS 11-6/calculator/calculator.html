@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body {
+            background-color: #55AD9B;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(5, 1fr);
+            gap: 5px;
+            background-color: rgb(136, 199, 238);
+            border-radius: 8px;
+            box-shadow: 0px 10px 10px rgb(58, 97, 127);
+            border: 2px solid #95D2B3;
+            width: 600px;
+            height: 85vh;
+            margin: 3% auto;
+        }
+
+        .grid-container > div {
+            box-shadow: 0px 10px 10px rgb(84, 123, 147);
+            background-color: rgba(231, 230, 230, 0.964);
+            margin: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            font-family: sans-serif;
+            color: rgb(49, 49, 42);
+        }
+
+        .span_4 {
+            grid-column: span 4;
+        }
+
+        .yellow {
+            background-color: yellow;
+        }
+
+        .red {
+            background-color: rgb(226, 134, 134) !important;
+        }
+        .operatorsColor {
+            background-color: rgb(248, 248, 136) ;
+        }
+        button {
+            width: 100%;
+            height: 100%;
+            background-color: inherit;
+            font-size: larger;
+            color: rgb(27, 27, 27);
+            border: none;
+            outline: none;
+            cursor: pointer;
+            transition: transform 0.1s ease, box-shadow 0.1s ease;
+        }
+
+        button:active {
+            transform: translateY(4px);
+            box-shadow: 0px 6px 6px rgb(84, 123, 147);
+        }
+
+        button:focus {
+            outline: none;
+        }
+
+        .outputScreen {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 10px;
+            background-color: rgb(46, 46, 46) !important;
+            color: rgb(56, 203, 56) !important; 
+            font-size: 3rem !important; 
+            border-radius: 8px; 
+            min-height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-container">
+        <div id="outputScreen" class="outputScreen span_4">0</div>
+
+        <div class="numberButton"><button>1</button></div>
+        <div class="numberButton"><button>2</button></div>
+        <div class="numberButton"><button>3</button></div>
+        <div class="operatorButton operatorsColor"><button>+</button></div>
+
+        <div class="numberButton"><button>4</button></div>
+        <div class="numberButton"><button>5</button></div>
+        <div class="numberButton"><button>6</button></div>
+        <div class="operatorButton operatorsColor"><button>-</button></div>
+
+        <div class="numberButton"><button>7</button></div>
+        <div class="numberButton"><button>8</button></div>
+        <div class="numberButton"><button>9</button></div>
+        <div class="operatorButton operatorsColor"><button>*</button></div>
+
+        <div class="operatorButton red"><button>C</button></div>
+        <div class="numberButton"><button>0</button></div>
+        <div class="operatorButton"><button>=</button></div>
+        <div class="operatorButton operatorsColor"><button>/</button></div>
+    </div>
+
+    <script>
+        let currentInput = "";
+        let firstOperand = null;
+        let operator = null;
+        let resetScreen = false; 
+
+        const outPutScreen = document.getElementById("outputScreen");
+        const numberButtons = document.querySelectorAll(".numberButton button");
+        const operatorButtons = document.querySelectorAll(".operatorButton button");
+
+        const handleNumberClick = (event) => {
+            if (resetScreen) {
+                outPutScreen.textContent = "";
+                resetScreen = false;
+            }
+            currentInput += event.target.textContent;
+            outPutScreen.textContent = currentInput;
+        }
+
+        const handleOperatorClick = (event) => {
+            if (currentInput === "") return; // if no number is clicked yet it exit's the function . 
+            if (firstOperand !== null) {
+                calculate();
+            } else { 
+                firstOperand = parseFloat(currentInput); // Number() works too. the deference is parseFloat() turns any string into numbers and ignors charecters, Number() gives "NaN" if there is a charecter.
+            }
+            operator = event.target.textContent;
+            currentInput = "";
+            resetScreen = true;
+        }
+
+        const handleEqualsClick = () => {
+            if (firstOperand === null || currentInput === "") return;
+            calculate();
+            firstOperand = null;
+        }
+
+        const handleClearClick = () => {
+            currentInput = "";
+            firstOperand = null;
+            operator = null;
+            outPutScreen.textContent = "0";
+            resetScreen = false;
+        }
+
+        const calculate = () => {
+            let secondOperand = parseFloat(currentInput); // using parseFloat same as firstOperand , both Number and parseFloat works.
+            switch (operator) {
+                case "+":
+                    firstOperand += secondOperand;
+                    break;
+                case "-":
+                    firstOperand -= secondOperand;
+                    break;
+                case "*":
+                    firstOperand *= secondOperand;
+                    break;
+                case "/":
+                    if (secondOperand === 0) {
+                        alert("Cannot divide by zero");
+                        handleClearClick();
+                        return;
+                    }
+                    firstOperand /= secondOperand;
+                    break;
+            }
+            outPutScreen.textContent = firstOperand;
+            currentInput = firstOperand.toString();
+            operator = null;
+        }
+
+        numberButtons.forEach(button => {
+            button.addEventListener('click', handleNumberClick);
+        });
+
+        operatorButtons.forEach(button => {
+            if (button.textContent === "=") {
+                button.addEventListener('click', handleEqualsClick);
+            } else if (button.textContent === "C") {
+                button.addEventListener('click', handleClearClick);
+            } else {
+                button.addEventListener('click', handleOperatorClick);
+            }
+        });
+
+    </script>
+</body>
+</html>

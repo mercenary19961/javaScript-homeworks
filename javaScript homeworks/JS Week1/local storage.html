@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Local Storage Example</title>
+    <style>
+      body {
+        background-color: white;
+        color: black;
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      body.light {
+        background-color: white;
+        color: black;
+      }
+
+      body.dark {
+        background-color: black;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Select Theme</h1>
+    <button id="lightTheme">Light Theme</button>
+    <button id="darkTheme">Dark Theme</button>
+
+    <script>
+      const lightThemeButton = document.getElementById("lightTheme");
+      const darkThemeButton = document.getElementById("darkTheme");
+
+      // Function to apply the theme
+      function applyTheme(theme) {
+        document.body.className = theme;
+      }
+
+      // Check if a theme is already saved in local storage
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme) {
+        applyTheme(savedTheme);
+      }
+
+      // Set the light theme and save it to local storage
+      lightThemeButton.addEventListener("click", () => {
+        localStorage.setItem("theme", "light");
+        applyTheme("light");
+      });
+
+      // Set the dark theme and save it to local storage
+      darkThemeButton.addEventListener("click", () => {
+        localStorage.setItem("theme", "dark");
+        applyTheme("dark");
+      });
+    </script>
+  </body>
+</html>
