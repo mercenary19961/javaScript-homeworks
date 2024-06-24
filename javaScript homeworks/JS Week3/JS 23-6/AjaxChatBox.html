@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax Chat Box</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+        form {
+            margin-bottom: 20px;
+            align-self: baseline;
+            padding-left: 34.7%;
+        }
+        .left {
+            align-self: baseline;
+            padding-left: 34.7%;
+            margin-bottom: 40px;
+        }
+        #chatBox {
+            width: 300px;
+            height: 400px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            overflow-y: scroll;
+        }
+        .message {
+            padding: 5px;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+        .userMessage {
+            background-color: #e1ffc7;
+            text-align: right;
+        }
+        .serverMessage {
+            background-color: #ffecb3;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>AJAX Request with JavaScript</h1>
+    <form id="chatForm">
+        <input type="text" id="chat" name="chat" placeholder="javaScript">
+        <input type="submit" value="Add Comment">
+    </form>
+    <h1 class="left">Get comment: <span id="liveComment"></span></h1>
+    <div id="chatBox"></div>
+
+    <script>
+        document.getElementById('chat').addEventListener('input', function() {
+            const liveComment = document.getElementById('liveComment');
+            liveComment.textContent = this.value;
+        });
+
+        document.getElementById('chatForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const inputField = document.getElementById('chat');
+            const message = inputField.value;
+
+            if (message.trim() !== '') {
+                // Display the user's message instantly in the chat box
+                addMessageToChatBox(message, 'userMessage');
+
+                // Using XMLHttpRequest to simulate sending data to the server and receiving a response
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', 'http://localhost:3000/submit', true); // Replace 'http://localhost:3000/submit' with your actual endpoint
+                xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        addMessageToChatBox(xhr.responseText, 'serverMessage');
+                    }
+                };
+
+                xhr.send(JSON.stringify({ name: message }));
+
+                inputField.value = '';
+                document.getElementById('liveComment').textContent = '';
+            }
+        });
+
+        function addMessageToChatBox(message, type) {
+            const chatBox = document.getElementById('chatBox');
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message', type);
+            messageDiv.textContent = message;
+            chatBox.appendChild(messageDiv);
+            chatBox.scrollTop = chatBox.scrollHeight; // Auto scroll to bottom
+        }
+    </script>
+</body>
+</html>
