@@ -66,12 +66,10 @@
             const message = inputField.value;
 
             if (message.trim() !== '') {
-                // Display the user's message instantly in the chat box
-                addMessageToChatBox(message, 'userMessage');
+                addMessageToChatBox(message, 'userMessage'); // to show the message instantly
 
-                // Using XMLHttpRequest to simulate sending data to the server and receiving a response
                 const xhr = new XMLHttpRequest();
-                xhr.open('POST', 'http://localhost:3000/submit', true); // Replace 'http://localhost:3000/submit' with your actual endpoint
+                xhr.open('POST', 'http://localhost:5500/submit', true);
                 xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
 
                 xhr.onreadystatechange = function() {
@@ -93,7 +91,6 @@
             messageDiv.classList.add('message', type);
             messageDiv.textContent = message;
             chatBox.appendChild(messageDiv);
-            chatBox.scrollTop = chatBox.scrollHeight; // Auto scroll to bottom
         }
     </script>
 </body>
