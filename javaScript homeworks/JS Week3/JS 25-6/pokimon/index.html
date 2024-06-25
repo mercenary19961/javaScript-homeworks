@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .image_style {
+            width: 200px;
+            height: 200px;
+            margin: 10%;
+        }
+    </style>
+</head>
+<body>
+    <input id="pic" type="text" placeholder="Enter Pokemon name">
+    <button id="button">Get Pokemon</button>
+    <div id="image-container"></div>
+
+    <script>
+        async function getPokimon() {
+            const userChoice = document.getElementById("pic").value.toLowerCase();
+            const API = `https://pokeapi.co/api/v2/pokemon-form/${userChoice}`;
+            try {
+                const response = await fetch(API);
+                if (!response.ok) {
+                    throw new Error("hmmm something went banana");
+                }
+                const data = await response.json();
+                pushPic(data);
+            } catch (error) {
+                console.error("Something went banana with your fetch operation", error);
+            }
+        }
+        
+        function pushPic(data) {
+            const imageContainer = document.getElementById('image-container');
+            imageContainer.innerHTML = ''; // Clear previous image
+            const imagePic = document.createElement('img');
+            imagePic.classList.add("image_style");
+            imagePic.src = data.sprites.front_shiny;
+            imageContainer.appendChild(imagePic);
+        }
+
+        document.getElementById("button").addEventListener('click', getPokimon);
+    </script>
+</body>
+</html>
