@@ -18,7 +18,7 @@ async function getWeather(city) {
         const data = await response.json();
         changeCity(data);
     } catch (error) {
-        console.error("Something went wrong with your fetch operation", error);
+        console.error("Something went banana with your fetch operation", error);
     }
 }
 
@@ -26,16 +26,22 @@ function changeCity(data) {
     locationElement.textContent = `${data.name}, ${data.sys.country}`;
     weatherTemp.textContent = `${Math.round(data.main.temp)}°C`;
     weatherDesc.textContent = `${data.weather[0].main}`;
-    pressureValue.textContent = `${data.main.pressure}`;
-    humidityView.textContent = `${data.main.humidity}`;
-    windView.textContent = `${data.wind.speed}`;
+    pressureValue.textContent = `${data.main.pressure} %`;
+    humidityView.textContent = `${data.main.humidity} %`;
+    windView.textContent = `${data.wind.speed} km/h`;
 }
 
 selectElement.addEventListener('change', (event) => {
     const selectedCity = event.target.value;
     getWeather(selectedCity);
+    localStorage.setItem('selectedCity', selectedCity);
 });
 
+const storedCity = localStorage.getItem('selectedCity');
+if (storedCity) {
+    selectElement.value = storedCity;
+    getWeather(storedCity);
+};
 getWeather(selectElement.value);
 
 
