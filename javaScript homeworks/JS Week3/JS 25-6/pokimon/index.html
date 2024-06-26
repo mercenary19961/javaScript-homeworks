@@ -6,21 +6,37 @@
     <title>Pokemon</title>
     <style>
         body {
+            background-color: blueviolet;
+        }
+        .container {
             display: flex;
             flex-direction: column;
+            justify-content: end;
             align-items: center;
+            height: 90vh;
+            width: 100%;
+        }
+        #button {
+            margin-top: 1%;
+            width: 150px;
+            height: 100px;
+            font-size: larger;
+        }
+        #pic {
+            font-size: larger;
         }
         .image_style {
             width: 200px;
             height: 200px;
-            margin: 10%;
         }
     </style>
 </head>
 <body>
-    <input id="pic" type="text" placeholder="Enter Pokemon name">
-    <button id="button">Get Pokemon</button>
-    <div id="image-container"></div>
+    <div class="container">
+        <div id="image-container"></div>
+        <input id="pic" type="text" placeholder="Enter Pokemon name">
+        <button id="button">Get Pokemon</button>
+    </div>
 
     <script>
         async function getPokimon() {
@@ -40,7 +56,7 @@
         
         function pushPic(data) {
             const imageContainer = document.getElementById('image-container');
-            imageContainer.innerHTML = ''; // Clear previous image
+            imageContainer.innerHTML = ''; // to clear previous image
             const imagePic = document.createElement('img');
             imagePic.classList.add("image_style");
             imagePic.src = data.sprites.front_shiny;

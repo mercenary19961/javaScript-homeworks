@@ -1,5 +1,6 @@
 const apiKey = 'd3de55586eab71de59e1a59f6f3f093d';
 
+const dateAndDay = document.querySelector(".date-day");
 const locationElement = document.querySelector(".location");
 const weatherTemp = document.querySelector(".weather-temp");
 const weatherDesc = document.querySelector(".weather-desc");
@@ -23,10 +24,18 @@ async function getWeather(city) {
 }
 
 function changeCity(data) {
+    const today = new Date();
+    const currentDay = today.getDate();
+    const currentMonthIndex = today.getMonth();
+    const currentYear = today.getFullYear();
+
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+    dateAndDay.textContent = `${currentDay} ${monthNames[currentMonthIndex]} ${currentYear}`;
     locationElement.textContent = `${data.name}, ${data.sys.country}`;
     weatherTemp.textContent = `${Math.round(data.main.temp)}°C`;
     weatherDesc.textContent = `${data.weather[0].main}`;
-    pressureValue.textContent = `${data.main.pressure} %`;
+    pressureValue.textContent = `${data.main.pressure} hPa`;
     humidityView.textContent = `${data.main.humidity} %`;
     windView.textContent = `${data.wind.speed} km/h`;
 }

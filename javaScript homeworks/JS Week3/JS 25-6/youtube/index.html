@@ -7,17 +7,35 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: rgb(130, 197, 175);
         }
         #video-list {
             display: flex;
+            flex-direction: row;
             flex-wrap: wrap;
         }
         .video {
             margin: 10px;
-            width: 300px;
+            width: 350px;
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid black;
+            border-radius: 3px;
         }
         .video img {
             width: 100%;
+        }
+        .video h3 {
+            height: 60px; /* Fixed height for h3 */
+            overflow: hidden;
+            text-overflow: ellipsis; /* Add ellipsis for overflow text */
+            white-space: wrap; /* Prevent text from wrapping */
+            padding-left: 2px;
+        }
+        .video p {
+            flex-grow: 1;
+            padding-left: 2px;
         }
     </style>
 </head>
